@@ -1,5 +1,5 @@
 #
-# motd.pp
+# motd::message.pp
 # 
 # Copyright (c) 2011, OSBI Ltd. All rights reserved.
 #
@@ -18,19 +18,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301  USA
 #
-class motd {
+define motd::message ($source='', $content='') {
 
-  $path = $operatingsystem ? {
-    /RedHat|CentOS|Fedora/ => "/etc/motd",
-    /Debian|Ubuntu/ => "/etc/motd.tail",
-  }
+  include motd
 
-  # debian rewrites his motd, see /etc/init.d/bootmisc.sh
-  exec { "update motd":
-    refreshonly => true,
-    command     => $operatingsystem ? {
-      /RedHat|CentOS|Fedora/ => "true",
-      /Debian|Ubuntu/ => "uname -snrvm > /var/run/motd && cat /etc/motd.tail >> /var/run/motd",
+  common::concatfilepart { $name:
+    file   => "${motd::path}",
+    manage => true,
+    source => $source ? {
+      default => $source,
+      '' => false,
     },
+    content => $content ? {
+      default => $content,
+      '' => false,
+    },
+    notify => Exec["update motd"],
   }
+
 }
