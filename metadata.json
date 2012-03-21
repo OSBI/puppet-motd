@@ -1,0 +1,26 @@
+{
+  "name": "Analytical Labs-motd",
+  "author": "Tom Barber",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "1.0",
+  "checksums": {
+    "Modulefile": "757e349b7ff54409580b34142261f5b2",
+    "README": "94bd47cdea2f88e9acec6e4634a3bf57",
+    "files/system.motd.erb": "1ab83db6a87d546cd5e9b0bfd747e2c7",
+    "manifests/init.pp": "f81bcae097cd92b988f16e9620d1465a",
+    "manifests/message.pp": "32aac4c330aef04211fd5f042cd4ff77",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
+    "tests/init.pp": "5086992bfbe4109aef08a6dc91736250"
+  },
+  "dependencies": [
+    {
+      "name": "Analytical Labs/common",
+      "versionRequirement": "\u003d\u003d1.0"
+    }
+  ]
+}
