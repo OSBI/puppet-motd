@@ -22,18 +22,16 @@ define motd::message ($source='', $content='') {
 
   include motd
 
-  common::concatfilepart { $name:
-    file   => "${motd::path}",
-    manage => true,
+  concat::fragment { $name:
+    target=> "${motd::path}",
     source => $source ? {
       default => $source,
-      '' => false,
+      '' => undef,
     },
     content => $content ? {
       default => $content,
-      '' => false,
+      '' => undef,
     },
-    notify => Exec["update motd"],
   }
 
 }
